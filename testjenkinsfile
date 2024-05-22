@@ -15,6 +15,12 @@ pipeline{
         sh 'npm pack'
           }
     }
-
+     stage('upload artifact'){ 
+       steps{
+          sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T \
+           *.tgz \
+            "http://ec2-54-237-77-32.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"'
+       }
+     }
   }
 }
